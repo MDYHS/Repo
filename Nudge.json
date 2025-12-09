@@ -12,7 +12,7 @@
   },
   "osVersionRequirements": [
     {
-      "requiredMinimumOSVersion": "26",
+      "requiredMinimumOSVersion": "latest",
       "aboutUpdateURL": "https://support.apple.com/macos",
       "standardMajorUpgradeSLA": 28,
       "standardMinorUpdateSLA": 28,
@@ -50,4 +50,5 @@
     "elapsedTitleText": "Upgrade overdue",
     "elapsedContentText": "Your Mac is past the required upgrade date. Upgrade now to avoid loss of access."
   }
+
 }
