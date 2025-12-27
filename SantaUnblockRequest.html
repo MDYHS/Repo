@@ -47,6 +47,7 @@
         
         .content {
             padding: 30px;
+            padding-bottom: 40px;
         }
         
         .info-card {
@@ -96,7 +97,7 @@
             background: #fff3cd;
             border: 1px solid #ffc107;
             border-radius: 8px;
-            padding: 15px;
+            padding: 15px 15px 15px 20px;
             margin-bottom: 25px;
             font-size: 13px;
             color: #856404;
@@ -104,7 +105,19 @@
         
         .notice strong {
             display: block;
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: #664d03;
+        }
+        
+        .notice ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .notice li {
             margin-bottom: 5px;
+            font-weight: 600;
         }
         
         .btn-container {
@@ -132,20 +145,13 @@
             box-shadow: 0 4px 12px rgba(0,34,97,0.4);
         }
         
-        .footer {
-            text-align: center;
-            padding: 20px 30px 30px;
-            color: #6c757d;
-            font-size: 12px;
+        .logo {
+            margin-bottom: 15px;
         }
         
-        .footer a {
-            color: #002261;
-        }
-
-        .logo {
-            font-size: 48px;
-            margin-bottom: 15px;
+        .logo img {
+            height: 120px;
+            width: auto;
         }
 
         @media (max-width: 480px) {
@@ -163,7 +169,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">✡️</div>
+            <div class="logo"><img src="https://mdyhs.github.io/Repo/MDYHSLogoWhite.png" alt="MDYHS Logo"></div>
             <h1>Software Unblock Request</h1>
             <p>Magen David Yeshivah High School</p>
         </div>
@@ -171,10 +177,6 @@
         <div class="content">
             <div class="info-card">
                 <h2>Application Details</h2>
-                <div class="info-row">
-                    <span class="info-label">Application</span>
-                    <span class="info-value" id="app-name">-</span>
-                </div>
                 <div class="info-row">
                     <span class="info-label">Bundle ID</span>
                     <span class="info-value" id="bundle-id">-</span>
@@ -219,44 +221,51 @@
             
             <div class="notice">
                 <strong>⚠️ Important Notice</strong>
-                This request is subject to review and approval by IT and Administration. 
-                Approval is not guaranteed. Unauthorized software installation attempts may result in disciplinary action.
+                <ul>
+                    <li>This request is subject to review and approval by IT and Administration</li>
+                    <li>Approval is not guaranteed</li>
+                    <li>Unauthorized software installation attempts may result in disciplinary action</li>
+                </ul>
             </div>
             
             <div class="btn-container">
                 <a id="email-btn" class="btn" href="#">
-                    📧 Submit Unblock Request
+                    📧 Send Email Request
                 </a>
             </div>
         </div>
-        
-        <div class="footer">
-            Questions? Contact <a href="mailto:techsupport@hs.mdy.org">techsupport@hs.mdy.org</a>
-        </div>
-    </div>
     
     <script>
         // Parse URL parameters from Santa
+        // CORRECT Santa EventDetailURL variables per official documentation:
+        // %file_identifier% - SHA-256 of the file
+        // %file_bundle_id% - Bundle ID
+        // %team_id% - Team ID
+        // %signing_id% - Signing ID
+        // %cdhash% - CDHash
+        // %machine_id% - Machine ID
+        // %username% - Username
+        // %serial% - Serial number
+        // %hostname% - Hostname
+        
         const params = new URLSearchParams(window.location.search);
         
-        // Get Santa variables from URL parameters
-        const appName = params.get('app') || params.get('bundle_or_file_name') || 'Unknown';
-        const bundleId = params.get('bundle_id') || 'Unknown';
+        // Get Santa variables from URL parameters (using correct variable names)
+        const fileIdentifier = params.get('file_identifier') || 'Unknown';
+        const fileBundleId = params.get('file_bundle_id') || 'Unknown';
         const teamId = params.get('team_id') || 'Unknown';
         const signingId = params.get('signing_id') || 'Unknown';
-        const sha256 = params.get('sha256') || params.get('file_sha256') || params.get('file_identifier') || 'Unknown';
         const cdhash = params.get('cdhash') || 'Unknown';
+        const machineId = params.get('machine_id') || 'Unknown';
         const username = params.get('username') || 'Unknown';
         const hostname = params.get('hostname') || 'Unknown';
-        const serial = params.get('serial') || params.get('serial_num') || 'Unknown';
-        const machineId = params.get('machine_id') || 'Unknown';
+        const serial = params.get('serial') || 'Unknown';
         
         // Populate the page
-        document.getElementById('app-name').textContent = appName;
-        document.getElementById('bundle-id').textContent = bundleId;
+        document.getElementById('bundle-id').textContent = fileBundleId;
         document.getElementById('team-id').textContent = teamId;
         document.getElementById('signing-id').textContent = signingId;
-        document.getElementById('sha256').textContent = sha256;
+        document.getElementById('sha256').textContent = fileIdentifier;
         document.getElementById('cdhash').textContent = cdhash;
         document.getElementById('username').textContent = username;
         document.getElementById('hostname').textContent = hostname;
@@ -266,9 +275,8 @@
         // Build email body
         const emailBody = `Please unblock the following application:
 
-File SHA-256: ${sha256}
-Application: ${appName}
-Bundle ID: ${bundleId}
+File SHA-256: ${fileIdentifier}
+Bundle ID: ${fileBundleId}
 Team ID: ${teamId}
 Signing ID: ${signingId}
 CDHash: ${cdhash}
