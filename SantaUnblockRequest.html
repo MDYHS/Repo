@@ -11,67 +11,283 @@
             padding: 0;
         }
         
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1a2234;
+            --bg-input: #0d1321;
+            --border-color: #2a3a52;
+            --border-focus: #3b82f6;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --warning-bg: rgba(234, 179, 8, 0.1);
+            --warning-border: #ca8a04;
+            --warning-text: #fbbf24;
+            --error: #ef4444;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #002261 0%, #003494 100%);
+            font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', Monaco, 'Courier New', monospace;
+            background: var(--bg-primary);
             min-height: 100vh;
             padding: 40px 20px;
+            color: var(--text-primary);
+            background-image: 
+                radial-gradient(ellipse at top, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
         }
         
         .container {
-            max-width: 600px;
+            max-width: 640px;
             margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
             overflow: hidden;
+            box-shadow: 
+                0 0 0 1px rgba(59, 130, 246, 0.1),
+                0 20px 50px rgba(0, 0, 0, 0.5);
         }
         
         .header {
-            background: #002261;
-            color: white;
-            padding: 30px;
+            background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+            padding: 32px;
             text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .logo {
+            margin-bottom: 16px;
+        }
+        
+        .logo img {
+            height: 100px;
+            width: auto;
+            opacity: 0.95;
         }
         
         .header h1 {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 600;
-            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            color: var(--text-primary);
         }
         
         .header p {
-            opacity: 0.9;
-            font-size: 14px;
+            color: var(--text-muted);
+            font-size: 12px;
+            letter-spacing: 0.3px;
         }
         
         .content {
-            padding: 30px;
-            padding-bottom: 40px;
+            padding: 28px;
+        }
+        
+        .request-section {
+            margin-bottom: 28px;
+        }
+        
+        .section-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .section-label::before {
+            content: '';
+            width: 8px;
+            height: 1px;
+            background: var(--accent);
+        }
+        
+        .justification-intro {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .justification-box {
+            width: 100%;
+            min-height: 120px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px;
+            color: var(--text-primary);
+            font-size: 13px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            resize: vertical;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .justification-box::placeholder {
+            color: var(--text-muted);
+        }
+        
+        .justification-box:focus {
+            outline: none;
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+        
+        .justification-box.error {
+            border-color: var(--error);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+        }
+        
+        .char-count {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 8px;
+        }
+        
+        .error-message {
+            font-size: 12px;
+            color: var(--error);
+            margin-top: 8px;
+            display: none;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .error-message.visible {
+            display: block;
+        }
+        
+        .btn-container {
+            margin-top: 20px;
+        }
+        
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px 24px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+        }
+        
+        .btn:hover:not(.disabled) {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn.disabled {
+            background: var(--border-color);
+            color: var(--text-muted);
+            cursor: not-allowed;
+        }
+        
+        .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .notice {
+            background: var(--warning-bg);
+            border: 1px solid var(--warning-border);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 24px;
+            font-size: 12px;
+            color: var(--warning-text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .notice strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+        
+        .notice ul {
+            margin: 0;
+            padding-left: 18px;
+            line-height: 1.7;
+        }
+        
+        .notice li {
+            margin-bottom: 2px;
+        }
+        
+        .details-section {
+            margin-top: 32px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .details-header {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .details-header::before,
+        .details-header::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
         }
         
         .info-card {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 16px;
+        }
+        
+        .info-card:last-child {
+            margin-bottom: 0;
         }
         
         .info-card h2 {
-            font-size: 14px;
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #002261;
-            margin-bottom: 15px;
+            letter-spacing: 1.2px;
+            color: var(--accent);
+            margin-bottom: 14px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #002261;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
         }
         
         .info-row {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #e9ecef;
+            align-items: flex-start;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(42, 58, 82, 0.5);
         }
         
         .info-row:last-child {
@@ -80,85 +296,34 @@
         
         .info-label {
             font-weight: 500;
-            color: #495057;
-            font-size: 13px;
+            color: var(--text-secondary);
+            font-size: 11px;
+            flex-shrink: 0;
         }
         
         .info-value {
-            color: #212529;
-            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
-            font-size: 12px;
+            color: var(--text-primary);
+            font-size: 11px;
             text-align: right;
-            max-width: 60%;
+            max-width: 65%;
             word-break: break-all;
-        }
-        
-        .notice {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            border-radius: 8px;
-            padding: 15px 15px 15px 20px;
-            margin-bottom: 25px;
-            font-size: 13px;
-            color: #856404;
-        }
-        
-        .notice strong {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 15px;
-            color: #664d03;
-        }
-        
-        .notice ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-        
-        .notice li {
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-        
-        .btn-container {
-            text-align: center;
-            padding-top: 10px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 16px 40px;
-            background: #002261;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background: #003494;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,34,97,0.4);
-        }
-        
-        .logo {
-            margin-bottom: 15px;
-        }
-        
-        .logo img {
-            height: 120px;
-            width: auto;
+            font-family: 'SF Mono', 'Fira Code', Monaco, monospace;
         }
 
         @media (max-width: 480px) {
+            body {
+                padding: 20px 12px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
             .info-row {
                 flex-direction: column;
                 gap: 4px;
             }
+            
             .info-value {
                 text-align: left;
                 max-width: 100%;
@@ -175,65 +340,88 @@
         </div>
         
         <div class="content">
-            <div class="info-card">
-                <h2>Application Details</h2>
-                <div class="info-row">
-                    <span class="info-label">Bundle ID</span>
-                    <span class="info-value" id="bundle-id">-</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Team ID</span>
-                    <span class="info-value" id="team-id">-</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Signing ID</span>
-                    <span class="info-value" id="signing-id">-</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">File SHA-256</span>
-                    <span class="info-value" id="sha256">-</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">CDHash</span>
-                    <span class="info-value" id="cdhash">-</span>
-                </div>
-            </div>
-            
-            <div class="info-card">
-                <h2>Your Device</h2>
-                <div class="info-row">
-                    <span class="info-label">Username</span>
-                    <span class="info-value" id="username">-</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Hostname</span>
-                    <span class="info-value" id="hostname">-</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Serial Number</span>
-                    <span class="info-value" id="serial">-</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Machine ID</span>
-                    <span class="info-value" id="machine-id">-</span>
+            <div class="request-section">
+                <div class="section-label">Request Justification</div>
+                <p class="justification-intro">
+                    To proceed with your request, please provide a clear and detailed explanation of why this application is useful or necessary for your academic work. Your justification will be reviewed by IT and/or Administration.
+                </p>
+                <textarea 
+                    id="justification" 
+                    class="justification-box" 
+                    placeholder="Explain the academic or educational purpose for this software. Include the course, assignment, or project that requires this application..."
+                    maxlength="1000"
+                ></textarea>
+                <div class="char-count"><span id="char-current">0</span> / 1000</div>
+                <div id="error-msg" class="error-message">A justification is required before submitting your request.</div>
+                
+                <div class="btn-container">
+                    <button id="email-btn" class="btn disabled" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        Submit Request
+                    </button>
                 </div>
             </div>
             
             <div class="notice">
-                <strong>⚠️ Important Notice</strong>
+                <strong>⚠ Important Notice ⚠</strong>
                 <ul>
-                    <li>This request is subject to review and approval by IT and Administration</li>
-                    <li>Approval is not guaranteed</li>
+                    <li>All requests are subject to review and approval by IT and Administration</li>
+                    <li>Approval is not guaranteed and may take several business days</li>
                     <li>Unauthorized software installation attempts may result in disciplinary action</li>
                 </ul>
             </div>
             
-            <div class="btn-container">
-                <a id="email-btn" class="btn" href="#">
-                    📧 Send Email Request
-                </a>
+            <div class="details-section">
+                <div class="details-header">Technical Details</div>
+                
+                <div class="info-card">
+                    <h2>Application Information</h2>
+                    <div class="info-row">
+                        <span class="info-label">Bundle ID</span>
+                        <span class="info-value" id="bundle-id">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Team ID</span>
+                        <span class="info-value" id="team-id">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Signing ID</span>
+                        <span class="info-value" id="signing-id">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">File SHA-256</span>
+                        <span class="info-value" id="sha256">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">CDHash</span>
+                        <span class="info-value" id="cdhash">-</span>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <h2>Device Information</h2>
+                    <div class="info-row">
+                        <span class="info-label">Username</span>
+                        <span class="info-value" id="username">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Hostname</span>
+                        <span class="info-value" id="hostname">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Serial Number</span>
+                        <span class="info-value" id="serial">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Machine ID</span>
+                        <span class="info-value" id="machine-id">-</span>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
     
     <script>
         // Parse URL parameters from Santa
@@ -288,29 +476,75 @@
         document.getElementById('serial').textContent = serial;
         document.getElementById('machine-id').textContent = machineId;
         
-        // Build email body
-        const emailBody = `Please unblock the following application:
+        // Form elements
+        const justificationBox = document.getElementById('justification');
+        const charCount = document.getElementById('char-current');
+        const errorMsg = document.getElementById('error-msg');
+        const emailBtn = document.getElementById('email-btn');
+        
+        // Character counter
+        justificationBox.addEventListener('input', function() {
+            const length = this.value.length;
+            charCount.textContent = length;
+            
+            // Enable/disable button based on content
+            if (length >= 20) {
+                emailBtn.classList.remove('disabled');
+                emailBtn.disabled = false;
+                errorMsg.classList.remove('visible');
+                justificationBox.classList.remove('error');
+            } else {
+                emailBtn.classList.add('disabled');
+                emailBtn.disabled = true;
+            }
+        });
+        
+        // Handle button click
+        emailBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const justification = justificationBox.value.trim();
+            
+            if (justification.length < 20) {
+                errorMsg.classList.add('visible');
+                justificationBox.classList.add('error');
+                justificationBox.focus();
+                return;
+            }
+            
+            // Build email body with justification
+            const emailBody = `Software Unblock Request
 
+JUSTIFICATION:
+${justification}
+
+─────────────────────────────────
+APPLICATION DETAILS
+─────────────────────────────────
 File SHA-256: ${fileIdentifier}
 Bundle ID: ${fileBundleId}
 Team ID: ${teamId}
 Signing ID: ${signingId}
 CDHash: ${cdhash}
 
+─────────────────────────────────
+DEVICE DETAILS
+─────────────────────────────────
 Machine ID: ${machineId}
 Username: ${username}
 Hostname: ${hostname}
 Serial: ${serial}
 
-Thank you`;
-        
-        // Build Gmail compose URL
-        const subject = encodeURIComponent('Request to unblock app in Santa');
-        const body = encodeURIComponent(emailBody);
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=techsupport@hs.mdy.org&su=${subject}&body=${body}`;
-        
-        // Set the button link
-        document.getElementById('email-btn').href = gmailUrl;
+Thank you for reviewing this request.`;
+            
+            // Build Gmail compose URL
+            const subject = encodeURIComponent('Request to unblock app in Santa');
+            const body = encodeURIComponent(emailBody);
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=techsupport@hs.mdy.org&su=${subject}&body=${body}`;
+            
+            // Open Gmail
+            window.location.href = gmailUrl;
+        });
     </script>
 </body>
 </html>
