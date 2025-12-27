@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Unblock Request - MDYHS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #002261 0%, #003494 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #002261;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .info-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .info-card h2 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #002261;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #002261;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-weight: 500;
+            color: #495057;
+            font-size: 13px;
+        }
+        
+        .info-value {
+            color: #212529;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 12px;
+            text-align: right;
+            max-width: 60%;
+            word-break: break-all;
+        }
+        
+        .notice {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            color: #856404;
+        }
+        
+        .notice strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .btn-container {
+            text-align: center;
+            padding-top: 10px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: #002261;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #003494;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,34,97,0.4);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px 30px 30px;
+            color: #6c757d;
+            font-size: 12px;
+        }
+        
+        .footer a {
+            color: #002261;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 480px) {
+            .info-row {
+                flex-direction: column;
+                gap: 4px;
+            }
+            .info-value {
+                text-align: left;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">✡️</div>
+            <h1>Software Unblock Request</h1>
+            <p>Magen David Yeshivah High School</p>
+        </div>
+        
+        <div class="content">
+            <div class="info-card">
+                <h2>Application Details</h2>
+                <div class="info-row">
+                    <span class="info-label">Application</span>
+                    <span class="info-value" id="app-name">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Bundle ID</span>
+                    <span class="info-value" id="bundle-id">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Team ID</span>
+                    <span class="info-value" id="team-id">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Signing ID</span>
+                    <span class="info-value" id="signing-id">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">File SHA-256</span>
+                    <span class="info-value" id="sha256">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">CDHash</span>
+                    <span class="info-value" id="cdhash">-</span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <h2>Your Device</h2>
+                <div class="info-row">
+                    <span class="info-label">Username</span>
+                    <span class="info-value" id="username">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Hostname</span>
+                    <span class="info-value" id="hostname">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Serial Number</span>
+                    <span class="info-value" id="serial">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Machine ID</span>
+                    <span class="info-value" id="machine-id">-</span>
+                </div>
+            </div>
+            
+            <div class="notice">
+                <strong>⚠️ Important Notice</strong>
+                This request is subject to review and approval by IT and Administration. 
+                Approval is not guaranteed. Unauthorized software installation attempts may result in disciplinary action.
+            </div>
+            
+            <div class="btn-container">
+                <a id="email-btn" class="btn" href="#">
+                    📧 Submit Unblock Request
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Questions? Contact <a href="mailto:techsupport@hs.mdy.org">techsupport@hs.mdy.org</a>
+        </div>
+    </div>
+    
+    <script>
+        // Parse URL parameters from Santa
+        const params = new URLSearchParams(window.location.search);
+        
+        // Get Santa variables from URL parameters
+        const appName = params.get('app') || params.get('bundle_or_file_name') || 'Unknown';
+        const bundleId = params.get('bundle_id') || 'Unknown';
+        const teamId = params.get('team_id') || 'Unknown';
+        const signingId = params.get('signing_id') || 'Unknown';
+        const sha256 = params.get('sha256') || params.get('file_sha256') || params.get('file_identifier') || 'Unknown';
+        const cdhash = params.get('cdhash') || 'Unknown';
+        const username = params.get('username') || 'Unknown';
+        const hostname = params.get('hostname') || 'Unknown';
+        const serial = params.get('serial') || params.get('serial_num') || 'Unknown';
+        const machineId = params.get('machine_id') || 'Unknown';
+        
+        // Populate the page
+        document.getElementById('app-name').textContent = appName;
+        document.getElementById('bundle-id').textContent = bundleId;
+        document.getElementById('team-id').textContent = teamId;
+        document.getElementById('signing-id').textContent = signingId;
+        document.getElementById('sha256').textContent = sha256;
+        document.getElementById('cdhash').textContent = cdhash;
+        document.getElementById('username').textContent = username;
+        document.getElementById('hostname').textContent = hostname;
+        document.getElementById('serial').textContent = serial;
+        document.getElementById('machine-id').textContent = machineId;
+        
+        // Build email body
+        const emailBody = `Please unblock the following application:
+
+File SHA-256: ${sha256}
+Application: ${appName}
+Bundle ID: ${bundleId}
+Team ID: ${teamId}
+Signing ID: ${signingId}
+CDHash: ${cdhash}
+
+Machine ID: ${machineId}
+Username: ${username}
+Hostname: ${hostname}
+Serial: ${serial}
+
+Thank you`;
+        
+        // Build Gmail compose URL
+        const subject = encodeURIComponent('Request to unblock app in Santa');
+        const body = encodeURIComponent(emailBody);
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=techsupport@hs.mdy.org&su=${subject}&body=${body}`;
+        
+        // Set the button link
+        document.getElementById('email-btn').href = gmailUrl;
+    </script>
+</body>
+</html>
