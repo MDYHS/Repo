@@ -237,29 +237,45 @@
     
     <script>
         // Parse URL parameters from Santa
-        // CORRECT Santa EventDetailURL variables per official documentation:
-        // %file_identifier% - SHA-256 of the file
-        // %file_bundle_id% - Bundle ID
-        // %team_id% - Team ID
-        // %signing_id% - Signing ID
-        // %cdhash% - CDHash
-        // %machine_id% - Machine ID
-        // %username% - Username
-        // %serial% - Serial number
-        // %hostname% - Hostname
+        // Using short param names to avoid confusion with Santa variable names
         
         const params = new URLSearchParams(window.location.search);
         
-        // Get Santa variables from URL parameters (using correct variable names)
-        const fileIdentifier = params.get('file_identifier') || 'Unknown';
-        const fileBundleId = params.get('file_bundle_id') || 'Unknown';
-        const teamId = params.get('team_id') || 'Unknown';
-        const signingId = params.get('signing_id') || 'Unknown';
-        const cdhash = params.get('cdhash') || 'Unknown';
-        const machineId = params.get('machine_id') || 'Unknown';
-        const username = params.get('username') || 'Unknown';
-        const hostname = params.get('hostname') || 'Unknown';
-        const serial = params.get('serial') || 'Unknown';
+        // Debug: log all parameters received
+        console.log('All URL params:', Object.fromEntries(params.entries()));
+        console.log('Raw URL:', window.location.href);
+        
+        // Helper function to get param with decoding
+        // Detects unsubstituted Santa placeholders (e.g., %team_id% becomes %25team_id%25 in URL)
+        function getParam(name) {
+            let value = params.get(name);
+            if (value) {
+                // Decode any URL encoding
+                try {
+                    value = decodeURIComponent(value);
+                } catch (e) {
+                    // Already decoded or invalid encoding
+                }
+                // Check if it's still a placeholder (Santa didn't substitute because value doesn't exist)
+                // Placeholders look like %something% after decoding
+                if (value.match(/^%[a-z_]+%$/)) {
+                    return null;
+                }
+            }
+            return value;
+        }
+        
+        // Get Santa variables from URL parameters
+        // Short names: sha, bid, tid, sid, cdh, mid, usr, host, sn
+        const fileIdentifier = getParam('sha') || getParam('file_identifier') || 'Not provided';
+        const fileBundleId = getParam('bid') || getParam('file_bundle_id') || 'Not provided';
+        const teamId = getParam('tid') || getParam('team_id') || 'Not available (unsigned or ad-hoc signed)';
+        const signingId = getParam('sid') || getParam('signing_id') || 'Not available (unsigned or ad-hoc signed)';
+        const cdhash = getParam('cdh') || getParam('cdhash') || 'Not provided';
+        const machineId = getParam('mid') || getParam('machine_id') || 'Not provided';
+        const username = getParam('usr') || getParam('username') || 'Not provided';
+        const hostname = getParam('host') || getParam('hostname') || 'Not provided';
+        const serial = getParam('sn') || getParam('serial') || 'Not provided';
         
         // Populate the page
         document.getElementById('bundle-id').textContent = fileBundleId;
