@@ -60,7 +60,7 @@
 				<string>30</string>
 				<!--  Visitor Management  -->
 				<key>kp_allowedDomains</key>
-				<string>follettdestiny.com;follett.com;follettsoftware.com</string>
+				<string>mdyhs.github.io;follettdestiny.com;follett.com;follettsoftware.com</string>
 				<!--  Night Mode schedule (Library-specific)  -->
 				<key>sleepSchedullerEnabled</key>
 				<true/>
@@ -94,7 +94,7 @@
 				<string>30</string>
 				<!--  Visitor Management  -->
 				<key>kp_allowedDomains</key>
-				<string>mdy.parentlocker.com;parentlocker.com</string>
+				<string>mdyhs.github.io;mdy.parentlocker.com;parentlocker.com</string>
 				<!--  Night Mode schedule (ES Lobby-specific — PLACEHOLDER)  -->
 				<key>sleepSchedullerEnabled</key>
 				<true/>
