@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
 		<key>kioskSettings_v2</key>
@@ -52,7 +55,7 @@
 			<dict>
 				<!--  Content  -->
 				<key>homePage</key>
-				<string>https://mdy.follettdestiny.com/portal/portal?app=Destiny%20Discover&appId=destiny-5CGD-9BBN&siteGuid=DCB35BD0-A9CF-472E-97A5-5A11D267D71F</string>
+                <string>https://mdy.follettdestiny.com/portal/portal?app=Destiny%20Discover&amp;appId=destiny-5CGD-9BBN&amp;siteGuid=DCB35BD0-A9CF-472E-97A5-5A11D267D71F</string>
 				<!--  Content Refresh  -->
 				<key>idleTime</key>
 				<string>20</string>
