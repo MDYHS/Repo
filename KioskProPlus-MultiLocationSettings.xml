@@ -85,38 +85,102 @@
 			</dict>
 			<!--  ============================================  -->
 			<!--  ES LOBBY KIOSK OVERRIDES — MDYESLobbyKiosk*   -->
-			<!--  Night Mode schedule: PLACEHOLDER — customize  -->
-			<!--  before rollout.                               -->
+			<!--  Active window: Mon-Thu 07:00–08:45            -->
+			<!--                 Fri     07:00–12:00            -->
+			<!--  Morning drop-off / arrival self-service.      -->
+			<!--  ParentLocker handles per-visitor reset        -->
+			<!--  internally, so Kiosk Pro timers are relaxed.  -->
 			<!--  ============================================  -->
 			<dict>
 				<!--  Content  -->
 				<key>homePage</key>
 				<string>https://mdy.parentlocker.com/app/main/kiosk/136aef3c-7a3e-4cf5-b16b-a44988a95966</string>
-				<!--  Content Refresh  -->
+				<!--  Content Refresh (idleTime=seconds, refreshTime=minutes)  -->
 				<key>idleTime</key>
-				<string>5</string>
+				<string>3600</string>
 				<key>refreshTime</key>
-				<string>5</string>
+				<string>60</string>
 				<!--  Visitor Management  -->
 				<key>kp_allowedDomains</key>
 				<string>mdyhs.github.io;mdy.parentlocker.com;parentlocker.com</string>
-				<!--  Night Mode schedule (ES Lobby-specific — PLACEHOLDER)  -->
+				<!--  Night Mode schedule (wake/dim pairs, time_0..time_9)  -->
+				<!--  Even index = Wake, Odd index = Dim                    -->
 				<key>sleepSchedullerEnabled</key>
 				<true/>
+				<key>time_0</key>
+				<string>Monday 07:00</string>
 				<key>time_1</key>
-				<string>Monday 17:30</string>
+				<string>Monday 08:45</string>
+				<key>time_2</key>
+				<string>Tuesday 07:00</string>
 				<key>time_3</key>
-				<string>Tuesday 17:30</string>
+				<string>Tuesday 08:45</string>
+				<key>time_4</key>
+				<string>Wednesday 07:00</string>
 				<key>time_5</key>
-				<string>Wednesday 17:30</string>
+				<string>Wednesday 08:45</string>
+				<key>time_6</key>
+				<string>Thursday 07:00</string>
 				<key>time_7</key>
-				<string>Thursday 17:30</string>
+				<string>Thursday 08:45</string>
+				<key>time_8</key>
+				<string>Friday 07:00</string>
 				<key>time_9</key>
-				<string>Friday 14:45</string>
+				<string>Friday 12:00</string>
 				<!--  Apply only to devices whose name starts with MDYESLobbyKiosk  -->
 				<key>ApplyTo</key>
 				<array>
 					<string>MDYESLobbyKiosk*</string>
+				</array>
+			</dict>
+			<!--  ============================================  -->
+			<!--  ES LOBBY DESK OVERRIDES — MDYESLobbyDesk*     -->
+			<!--  Active window: Mon-Thu 07:00–14:00            -->
+			<!--                 Fri     07:00–12:00            -->
+			<!--  Staffed front-desk station; longer uptime.    -->
+			<!--  Same ParentLocker endpoint and allowed        -->
+			<!--  domains as the Kiosk profile.                 -->
+			<!--  ============================================  -->
+			<dict>
+				<!--  Content  -->
+				<key>homePage</key>
+				<string>https://mdy.parentlocker.com/app/main/kiosk/136aef3c-7a3e-4cf5-b16b-a44988a95966</string>
+				<!--  Content Refresh (idleTime=seconds, refreshTime=minutes)  -->
+				<key>idleTime</key>
+				<string>3600</string>
+				<key>refreshTime</key>
+				<string>60</string>
+				<!--  Visitor Management  -->
+				<key>kp_allowedDomains</key>
+				<string>mdyhs.github.io;mdy.parentlocker.com;parentlocker.com</string>
+				<!--  Night Mode schedule (wake/dim pairs, time_0..time_9)  -->
+				<!--  Even index = Wake, Odd index = Dim                    -->
+				<key>sleepSchedullerEnabled</key>
+				<true/>
+				<key>time_0</key>
+				<string>Monday 07:00</string>
+				<key>time_1</key>
+				<string>Monday 14:00</string>
+				<key>time_2</key>
+				<string>Tuesday 07:00</string>
+				<key>time_3</key>
+				<string>Tuesday 14:00</string>
+				<key>time_4</key>
+				<string>Wednesday 07:00</string>
+				<key>time_5</key>
+				<string>Wednesday 14:00</string>
+				<key>time_6</key>
+				<string>Thursday 07:00</string>
+				<key>time_7</key>
+				<string>Thursday 14:00</string>
+				<key>time_8</key>
+				<string>Friday 07:00</string>
+				<key>time_9</key>
+				<string>Friday 12:00</string>
+				<!--  Apply only to devices whose name starts with MDYESLobbyDesk  -->
+				<key>ApplyTo</key>
+				<array>
+					<string>MDYESLobbyDesk*</string>
 				</array>
 			</dict>
 		</array>
