@@ -126,7 +126,7 @@
 				<key>time_8</key>
 				<string>Friday 07:00</string>
 				<key>time_9</key>
-				<string>Friday 12:00</string>
+				<string>Friday 8:45</string>
 				<!--  Apply only to devices whose name starts with MDYESLobbyKiosk  -->
 				<key>ApplyTo</key>
 				<array>
