@@ -95,11 +95,7 @@
 				<!--  Content  -->
 				<key>homePage</key>
 				<string>https://mdy.parentlocker.com/app/main/kiosk/136aef3c-7a3e-4cf5-b16b-a44988a95966</string>
-				<!--  Content Refresh (idleTime=seconds, refreshTime=minutes)  -->
-				<key>idleTime</key>
-				<string>300</string>
-				<key>refreshTime</key>
-				<string>60</string>
+
 				<!--  Visitor Management  -->
 				<key>kp_allowedDomains</key>
 				<string>mdyhs.github.io;mdy.parentlocker.com;parentlocker.com</string>
@@ -145,11 +141,6 @@
 				<!--  Content  -->
 				<key>homePage</key>
 				<string>https://mdy.parentlocker.com/app/main/kiosk/136aef3c-7a3e-4cf5-b16b-a44988a95966</string>
-				<!--  Content Refresh (idleTime=seconds, refreshTime=minutes)  -->
-				<key>idleTime</key>
-				<string>300</string>
-				<key>refreshTime</key>
-				<string>60</string>
 				<!--  Visitor Management  -->
 				<key>kp_allowedDomains</key>
 				<string>mdyhs.github.io;mdy.parentlocker.com;parentlocker.com</string>
