@@ -85,11 +85,7 @@
 			</dict>
 			<!--  ============================================  -->
 			<!--  ES LOBBY KIOSK OVERRIDES — MDYESLobbyKiosk*   -->
-			<!--  Active window: Mon-Thu 07:00–08:45            -->
-			<!--                 Fri     07:00–12:00            -->
-			<!--  Morning drop-off / arrival self-service.      -->
-			<!--  ParentLocker handles per-visitor reset        -->
-			<!--  internally, so Kiosk Pro timers are relaxed.  -->
+			<!--  Active window: Mon-Fri 07:00–08:45            -->
 			<!--  ============================================  -->
 			<dict>
 				<!--  Content  -->
@@ -134,8 +130,6 @@
 			<!--  Active window: Mon-Thu 07:00–14:00            -->
 			<!--                 Fri     07:00–12:00            -->
 			<!--  Staffed front-desk station; longer uptime.    -->
-			<!--  Same ParentLocker endpoint and allowed        -->
-			<!--  domains as the Kiosk profile.                 -->
 			<!--  ============================================  -->
 			<dict>
 				<!--  Content  -->
