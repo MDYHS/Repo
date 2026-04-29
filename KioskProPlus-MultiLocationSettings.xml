@@ -61,6 +61,10 @@
 				<string>20</string>
 				<key>refreshTime</key>
 				<string>30</string>
+				<!--  Settings access: 1 = Touch Gesture + Passcode     -->
+				<!--  (NOT shown on launch/reboot)                       -->
+				<key>showSettings</key>
+				<integer>1</integer>
 				<!--  Visitor Management  -->
 				<key>kp_allowedDomains</key>
 				<string>mdyhs.github.io;follettdestiny.com;follett.com;follettsoftware.com</string>
@@ -91,7 +95,16 @@
 				<!--  Content  -->
 				<key>homePage</key>
 				<string>https://mdy.parentlocker.com/app/main/kiosk/136aef3c-7a3e-4cf5-b16b-a44988a95966</string>
-
+				<!--  Content Refresh — DISABLED (ParentLocker handles  -->
+				<!--  per-visitor reset internally)                     -->
+				<key>idleTime</key>
+				<string>0</string>
+				<key>refreshTime</key>
+				<string>0</string>
+				<!--  Settings access: 1 = Touch Gesture + Passcode     -->
+				<!--  (NOT shown on launch/reboot)                       -->
+				<key>showSettings</key>
+				<integer>1</integer>
 				<!--  Visitor Management  -->
 				<key>kp_allowedDomains</key>
 				<string>mdyhs.github.io;mdy.parentlocker.com;parentlocker.com</string>
@@ -135,6 +148,16 @@
 				<!--  Content  -->
 				<key>homePage</key>
 				<string>https://mdy.parentlocker.com/app/main/kiosk/136aef3c-7a3e-4cf5-b16b-a44988a95966</string>
+				<!--  Content Refresh — DISABLED (ParentLocker handles  -->
+				<!--  per-visitor reset internally)                     -->
+				<key>idleTime</key>
+				<string>0</string>
+				<key>refreshTime</key>
+				<string>0</string>
+				<!--  Settings access: 1 = Touch Gesture + Passcode     -->
+				<!--  (NOT shown on launch/reboot)                       -->
+				<key>showSettings</key>
+				<integer>1</integer>
 				<!--  Visitor Management  -->
 				<key>kp_allowedDomains</key>
 				<string>mdyhs.github.io;mdy.parentlocker.com;parentlocker.com</string>
