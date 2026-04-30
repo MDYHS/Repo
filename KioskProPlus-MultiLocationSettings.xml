@@ -37,7 +37,7 @@
 				<key>kp_nightMode_isDisplayBlackBackgroundEnabled</key>
 				<true/>
 				<key>kp_nightMode_isAllowInterruptionByTouchEnabled</key>
-				<true/>
+				<false/>
 				<!--  Admin  -->
 				<key>settingsPassCode</key>
 				<string>6341</string>
