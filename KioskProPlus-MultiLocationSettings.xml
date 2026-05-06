@@ -24,11 +24,11 @@
 				<key>kp_isControlBrightnessInKioskEnabled</key>
 				<true/>
 				<key>manualControlOfBrightness</key>
-				<real>0.75</real>
+				<real>0.7</real>
 				<key>reduceBrightnessTimeInterval</key>
 				<string>300</string>
 				<key>kp_applyReduceBrightness</key>
-				<real>0.5</real>
+				<real>0.4</real>
 				<key>allowAutoLock</key>
 				<false/>
 				<!--  Night Mode display behavior (shared across groups)  -->
