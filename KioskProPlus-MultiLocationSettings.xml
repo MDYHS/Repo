@@ -98,7 +98,7 @@
 				<!--  Content Refresh — DISABLED (ParentLocker handles  -->
 				<!--  per-visitor reset internally)                     -->
 				<key>idleTime</key>
-				<string>7200</string>
+				<string>0</string>
 				<key>refreshTime</key>
 				<string>0</string>
 				<!--  Settings access: 1 = Touch Gesture + Passcode     -->
