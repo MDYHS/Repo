@@ -43,6 +43,8 @@
 				<string>6341</string>
 				<key>showSettings</key>
 				<integer>1</integer>
+				<key>settingsShowingOption</key>
+				<integer>2</integer>
 				<!--  Interaction  -->
 				<key>kp_preventDragAndDrop</key>
 				<true/>
