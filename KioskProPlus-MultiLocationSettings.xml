@@ -194,12 +194,7 @@
 				</array>
 			</dict>
 			<!--  ============================================  -->
-			<!--  AUDITORIUM OVERRIDES - MDYAuditorium1 ONLY    -->
-			<!--  Rack iPad running the Home Assistant AV        -->
-			<!--  control dashboard. Added 2026-08-17.           -->
-			<!--                                                 -->
-			<!--  ApplyTo is the EXACT name, not MDYAuditorium*,  -->
-			<!--  because MDYAuditorium2 has a different purpose. -->
+			<!--  AUDITORIUM OVERRIDES - MDYAuditoriumAV1 ONLY    -->
 			<!--  ============================================  -->
 			<dict>
 				<!--  Content: the HA LOCK view, not the dashboard.       -->
@@ -240,7 +235,7 @@
 				<!--  Apply ONLY to this one iPad  -->
 				<key>ApplyTo</key>
 				<array>
-					<string>MDYAuditorium1</string>
+					<string>MDYAuditoriumAV1</string>
 				</array>
 			</dict>
 		</array>
