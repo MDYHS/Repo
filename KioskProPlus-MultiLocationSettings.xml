@@ -193,6 +193,56 @@
 					<string>MDYESLobbyDesk*</string>
 				</array>
 			</dict>
+			<!--  ============================================  -->
+			<!--  AUDITORIUM OVERRIDES - MDYAuditorium1 ONLY    -->
+			<!--  Rack iPad running the Home Assistant AV        -->
+			<!--  control dashboard. Added 2026-08-17.           -->
+			<!--                                                 -->
+			<!--  ApplyTo is the EXACT name, not MDYAuditorium*,  -->
+			<!--  because MDYAuditorium2 has a different purpose. -->
+			<!--  ============================================  -->
+			<dict>
+				<!--  Content: the HA LOCK view, not the dashboard.       -->
+				<!--  Kiosk Pro's idle timer returns to homePage, so      -->
+				<!--  pointing it here makes the iPad lock itself after   -->
+				<!--  idleTime. Unlock is a PIN pad inside HA.            -->
+				<!--  Side effect: it also boots/relaunches locked.       -->
+				<key>homePage</key>
+				<string>http://10.10.222.20:8123/dashboard-auditorium/lock</string>
+				<!--  Content Refresh: 5400s = 90 min idle -> back to     -->
+				<!--  homePage (= locked). refreshTime 0 so it never      -->
+				<!--  reloads mid-show.                                   -->
+				<key>idleTime</key>
+				<string>5400</string>
+				<key>refreshTime</key>
+				<string>0</string>
+				<!--  Settings access: 1 = Touch Gesture + Passcode       -->
+				<key>showSettings</key>
+				<integer>1</integer>
+				<!--  Visitor Management. HA is reached by IP over plain   -->
+				<!--  http (the dashboard embeds the Shelly screen page,  -->
+				<!--  and an https page cannot iframe http).              -->
+				<key>kp_allowedDomains</key>
+				<string>mdyhs.github.io;10.10.222.20;10.10.222.55</string>
+				<!--  Screen "sleep" at 30 min idle. iPad Auto-Lock only  -->
+				<!--  offers up to 15 min and allowAutoLock is false in    -->
+				<!--  the BASE config, so this dims the backlight to      -->
+				<!--  black instead: 1800s idle -> brightness 0.0.        -->
+				<!--  Overrides the BASE 300s / 0.6.                      -->
+				<key>reduceBrightnessTimeInterval</key>
+				<string>1800</string>
+				<key>kp_applyReduceBrightness</key>
+				<real>0.0</real>
+				<!--  No Night Mode schedule: the auditorium runs evening -->
+				<!--  events, so a fixed dim/wake window is wrong here.   -->
+				<key>sleepSchedullerEnabled</key>
+				<false/>
+				<!--  Apply ONLY to this one iPad  -->
+				<key>ApplyTo</key>
+				<array>
+					<string>MDYAuditorium1</string>
+				</array>
+			</dict>
 		</array>
 	</dict>
 </plist>
