@@ -169,14 +169,13 @@
 (function () {
   "use strict";
 
-  // The two portal pages are fixed. ParentLocker's kiosk address carries a private token,
-  // so it is NEVER stored in this (public) page - it arrives in the URL fragment, which the
-  // browser does not send to any server. See build_site.py.
+  // All three are fixed. A "#pl=<url>" fragment overrides the ParentLocker one so a tablet
+  // can be pointed at a different kiosk without republishing this page.
   var APPS = {
     bus:          { title:"Bus Dismissal",            url:"https://staffes.mdy.org/Bus_Stops/Bus_Attendance_QR.aspx" },
     frontgate:    { title:"Parent Pick-up - Front Gate", url:"https://staffes.mdy.org/Parent_Pickup/Parent_Pickup_Front_Gate.aspx" },
     backyard:     { title:"Parent Pick-up - Backyard",   url:"https://staffes.mdy.org/Parent_Pickup/Parent_Pickup_Backyard.aspx" },
-    parentlocker: { title:"ParentLocker Attendance",  url:null }
+    parentlocker: { title:"ParentLocker Attendance",  url:"https://mdy.parentlocker.com/app/main/kiosk/136aef3c-7a3e-4cf5-b16b-a44988a95966" }
   };
 
   function fragParam(name) {
