@@ -41,7 +41,8 @@
   /* ---------- app frame ---------- */
   #frameWrap { position:fixed; inset:var(--bar) 0 0 0; display:none; background:#fff; }
   #frameWrap.on { display:block; }
-  #appFrame { width:100%; height:100%; border:0; display:block; }
+  #frameWrap iframe { width:100%; height:100%; border:0; display:none; }
+  #frameWrap iframe.on { display:block; }
 
   /* ---------- selector ---------- */
   #home {
@@ -111,11 +112,7 @@
   <button id="bHome"    title="Home"    aria-label="Home">&#8962;</button>
 </div>
 
-<div id="frameWrap">
-  <iframe id="appFrame" title="Application"
-          allow="camera *; microphone *; fullscreen *"
-          allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
-</div>
+<div id="frameWrap"></div>
 
 <main id="home">
   <div class="brand">
@@ -193,32 +190,45 @@
   var home = document.getElementById("home");
   var bar = document.getElementById("bar");
   var wrap = document.getElementById("frameWrap");
-  var frame = document.getElementById("appFrame");
   var barTitle = document.getElementById("barTitle");
   var plWarn = document.getElementById("plWarn");
 
-  // Our own view stack, so Back and Forward mean something. A cross-origin iframe will not
-  // let a parent page drive its internal history, so these move between OUR views instead
-  // of inside the embedded app. Refresh reloads the embedded app, which does work.
+  // ONE IFRAME PER APP, created on first use and then KEPT ALIVE and merely hidden.
+  // This is not a micro-optimisation: the ParentLocker kiosk asks for its unlock passcode on
+  // every page load and persists nothing (no cookie, no localStorage, verified 2026-09-11), so
+  // its unlocked state lives only in that frame's memory. Tearing the frame down on Home - which
+  // an earlier build did - forced staff to re-enter the passcode every single time they came
+  // back to it. Keeping the frame means the passcode is entered once per portal load.
+  var frames = {};
+  function frameFor(key) {
+    if (!frames[key]) {
+      var f = document.createElement("iframe");
+      f.title = APPS[key].title;
+      f.setAttribute("allow", "camera *; microphone *; fullscreen *");
+      f.setAttribute("allowfullscreen", "");
+      f.setAttribute("referrerpolicy", "no-referrer-when-downgrade");
+      f.src = APPS[key].url;
+      wrap.appendChild(f);
+      frames[key] = f;
+    }
+    return frames[key];
+  }
+
   var stack = ["home"], pos = 0;
 
   function render() {
     var view = stack[pos];
+    Object.keys(frames).forEach(function (k) { frames[k].classList.toggle("on", k === view); });
     if (view === "home") {
       home.classList.remove("off");
       wrap.classList.remove("on");
       bar.classList.remove("on");
-      frame.removeAttribute("src");
     } else {
-      var app = APPS[view];
+      frameFor(view).classList.add("on");
       home.classList.add("off");
       wrap.classList.add("on");
       bar.classList.add("on");
-      barTitle.textContent = app.title;
-      if (frame.getAttribute("data-app") !== view) {
-        frame.setAttribute("data-app", view);
-        frame.src = app.url;
-      }
+      barTitle.textContent = APPS[view].title;
     }
     document.getElementById("bBack").disabled = (pos === 0);
     document.getElementById("bFwd").disabled = (pos >= stack.length - 1);
@@ -234,24 +244,20 @@
   document.addEventListener("click", function (e) {
     var t = e.target.closest("[data-app],[data-toggle]");
     if (!t) return;
-
     var toggle = t.getAttribute("data-toggle");
     if (toggle) {
       var el = document.getElementById(toggle);
       var open = el.classList.toggle("on");
-      document.getElementById("pickupChev").innerHTML = open ? "&#10095;" : "&#10095;";
       document.getElementById("pickupChev").style.transform = open ? "rotate(90deg)" : "";
       return;
     }
-
     var key = t.getAttribute("data-app");
-    var app = APPS[key];
-    if (!app.url) { plWarn.classList.add("on"); return; }
+    if (!APPS[key].url) { plWarn.classList.add("on"); return; }
     go(key);
   });
 
   document.getElementById("bBack").addEventListener("click", function () {
-    if (pos > 0) { pos--; frame.removeAttribute("data-app"); render(); }
+    if (pos > 0) { pos--; render(); }
   });
   document.getElementById("bFwd").addEventListener("click", function () {
     if (pos < stack.length - 1) { pos++; render(); }
@@ -259,10 +265,11 @@
   document.getElementById("bHome").addEventListener("click", function () {
     if (stack[pos] !== "home") { go("home"); }
   });
+  // Refresh is the ONLY thing that discards an app's state - including a ParentLocker unlock.
   document.getElementById("bRefresh").addEventListener("click", function () {
     var view = stack[pos];
     if (view === "home") { location.reload(); return; }
-    frame.src = APPS[view].url;   // works cross-origin; reading its history would not
+    frames[view].src = APPS[view].url;
   });
 
   render();
